@@ -1,5 +1,4 @@
-import { MongoClient, ObjectId } from "mongodb";
-import type { Todo } from "./types";
+import { MongoClient, Db } from "mongodb";
 
 if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"');
@@ -7,7 +6,7 @@ if (!process.env.MONGODB_URI) {
 
 const uri = process.env.MONGODB_URI;
 const options = {
-  appName: "devrel.better-auth.demo",
+  appName: "ai-tutor-demo",
 };
 
 let client: MongoClient;
@@ -35,6 +34,13 @@ if (process.env.NODE_ENV === "development") {
 // separate module, the client can be shared across functions.
 export default clientPromise;
 
+// Export the database connection for learning sessions
+export const connectToDatabase = async (): Promise<{ database: Db }> => {
+  const client = await clientPromise;
+  const database = client.db(process.env.MONGODB_DB || "ai-tutor");
+  return { database };
+};
+
 // Export the database for Better Auth adapter
 export const getDatabase = async (dbName?: string) => {
   const client = await clientPromise;
@@ -45,12 +51,6 @@ export const getDatabase = async (dbName?: string) => {
 export const getAuthDatabase = async () => {
   const client = await clientPromise;
   return client.db(process.env.MONGODB_DB || "better-auth");
-};
-
-// Get the todos collection with proper typing
-export const getTodosCollection = async () => {
-  const database = await getAuthDatabase();
-  return database.collection<Omit<Todo, "_id"> & { _id?: ObjectId }>("todos");
 };
 
 // Get synchronous database instance for better-auth adapter

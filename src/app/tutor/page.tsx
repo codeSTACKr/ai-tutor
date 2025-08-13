@@ -1,17 +1,21 @@
-import { TutorChat } from "./tutor-chat";
-import { getServerSession } from "@/lib/auth-server";
+import { getUserLearningSessions } from '@/lib/actions';
+import { SessionList } from '@/components/sessions/session-list';
+import { CreateSessionForm } from '@/components/sessions/create-session-form';
 
 export default async function TutorPage() {
-  const session = await getServerSession();
-  
+  const sessions = await getUserLearningSessions();
+
   return (
     <div className="container mx-auto py-8">
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold">AI Tutor</h1>
-        <p className="text-gray-600">Ask me to create flashcards on any topic! 🎓</p>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2">
+          <h2 className="text-2xl font-semibold mb-6">Your Learning Sessions</h2>
+          <SessionList sessions={sessions} />
+        </div>
+        <div>
+          <CreateSessionForm />
+        </div>
       </div>
-      
-      <TutorChat session={session} />
     </div>
   );
 }

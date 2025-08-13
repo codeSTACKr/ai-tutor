@@ -4,7 +4,7 @@ import { getOptionalServerSession } from "@/lib/auth-server";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-  // Server-side authentication check - prevents content flashing
+  // Server-side authentication check
   const session = await getOptionalServerSession();
   
   // If user is authenticated, redirect to tutor
@@ -14,18 +14,6 @@ export default async function Home() {
 
   return (
     <div className="font-sans grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 gap-16">
-      {/* Header */}
-      <header className="w-full flex items-center justify-between max-w-6xl">
-        <h1 className="text-2xl font-bold">AI Tutor Demo</h1>
-        <nav className="flex items-center gap-2">
-          <Button variant="outline" asChild>
-            <Link href="/auth/login">Sign In</Link>
-          </Button>
-          <Button asChild>
-            <Link href="/auth/signup">Sign Up</Link>
-          </Button>
-        </nav>
-      </header>
 
       {/* Main Content */}
       <main className="flex flex-col gap-8 row-start-2 items-center text-center max-w-2xl">
@@ -71,7 +59,7 @@ export default async function Home() {
           </div>
         </div>
 
-
+        {/* Call to Action */}
         <div className="space-y-4 mt-8">
           <div className="text-center">
             <p className="text-lg font-medium mb-4">Ready to start learning with AI?</p>
