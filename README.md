@@ -6,6 +6,10 @@ Claude generates **interactive UI components as educational content** - transfor
 
 **Why It's Compelling**: Demonstrates Claude's generative UI capabilities, sophisticated tool orchestration, and educational intelligence on a production-ready stack (Next.js 15, MongoDB, better-auth).
 
+## Video Walkthrough
+
+[![YouTube Thumbnail - Link to video](http://img.youtube.com/vi/goxnUKwwf-I/0.jpg)](http://www.youtube.com/watch?v=goxnUKwwf-I)
+
 ## Setup & Running
 
 **Prerequisites**: Node.js 18+, MongoDB database, Anthropic API key
