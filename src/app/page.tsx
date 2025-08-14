@@ -13,7 +13,7 @@ export default async function Home() {
   }
 
   return (
-    <div className="font-sans grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-screen p-8 gap-16">
+    <div className="font-sans grid grid-rows-[auto_1fr_auto] items-center justify-items-center min-h-[calc(100vh-4rem)] p-8 gap-16">
 
       {/* Main Content */}
       <main className="flex flex-col gap-8 row-start-2 items-center text-center max-w-2xl">
